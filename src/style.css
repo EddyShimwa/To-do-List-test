@@ -6,7 +6,7 @@
 
 html,
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "poppins", sans-serif;
   overflow-x: hidden;
 }
 
@@ -22,7 +22,6 @@ body {
   display: block;
 }
 
-/* Todo Section start from here */
 .container {
   background: #3e75f6;
   color: #fff;
@@ -54,7 +53,7 @@ body {
 
 .title::after {
   width: 50px;
-  content: '';
+  content: "";
   display: block;
   border-bottom: 2px solid #470255;
   margin: 10px auto;
@@ -103,7 +102,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* Todo Items styles start from here */
 .todo-items-gropu {
   list-style: none;
   min-width: 100%;
@@ -156,7 +154,6 @@ body {
   color: #de8cff;
 }
 
-/* Dinamic styles is start from here */
 .no-item {
   text-align: center;
   color: #fdfdfd;

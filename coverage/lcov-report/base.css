@@ -1,3 +1,20 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+/* stylelint-disable declaration-block-semicolon-newline-after */
+/* stylelint-disable block-opening-brace-space-before */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable number-leading-zero */
+/* stylelint-disable declaration-block-trailing-semicolon */
+/* stylelint-disable selector-list-comma-newline-after */
+/* stylelint-disable block-opening-brace-space-after */
+/* stylelint-disable comment-empty-line-before */
+/* stylelint-disable declaration-block-single-line-max-declarations */
+/* stylelint-disable selector-pseudo-element-colon-notation */
+/* stylelint-disable declaration-colon-space-after */
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable rule-empty-line-before */
+/* stylelint-disable indentation */
+/* stylelint-disable block-closing-brace-space-before */
+/* stylelint-disable block-no-empty */
 body, html {
   margin:0; padding: 0;
   height: 100%;
@@ -23,7 +40,7 @@ pre {
     -o-tab-size:  2;
     tab-size: 2;
 }
-a { color:#0074D9; text-decoration:none; }
+a { color:hsl(208, 100%, 43%); text-decoration:none; }
 a:hover { text-decoration:underline; }
 .strong { font-weight: bold; }
 .space-top1 { padding: 10px 0 0 0; }
@@ -44,22 +61,24 @@ a:hover { text-decoration:underline; }
   visibility:hidden;
   }
 .fl { float: left; }
-@media only screen and (max-width:640px) {
-  .col3 { width:100%; max-width:100%; }
-  .hide-mobile { display:none!important; }
+
+@media only screen and (max-width: 640px) {
+  .col3 { width:100%; max-width: 100%; }
+  .hide-mobile { display:none !important; }
 }
 
 .quiet {
   color: #7f7f7f;
-  color: rgba(0,0,0,0.5);
+  color: #00000080;
 }
+
 .quiet a { opacity: 0.7; }
 
 .fraction {
   font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   font-size: 10px;
   color: #555;
-  background: #E8E8E8;
+  background: hsl(0, 0%, 91%);
   padding: 4px 5px;
   border-radius: 3px;
   vertical-align: middle;
@@ -155,23 +174,23 @@ table.coverage td span.cline-any {
 /* yellow */
 .cbranch-no { background: yellow !important; color: #111; }
 /* dark red */
-.red.solid, .status-line.low, .low .cover-fill { background:#C21F39 }
-.low .chart { border:1px solid #C21F39 }
+.red.solid, .status-line.low, .low .cover-fill { background:hsl(350, 72%, 44%) }
+.low .chart { border:1px solid hsl(350, 72%, 44%) }
 .highlighted,
 .highlighted .cstat-no, .highlighted .fstat-no, .highlighted .cbranch-no{
-  background: #C21F39 !important;
+  background: hsl(350, 72%, 44%) !important;
 }
 /* medium red */
-.cstat-no, .fstat-no, .cbranch-no, .cbranch-no { background:#F6C6CE }
+.cstat-no, .fstat-no, .cbranch-no, .cbranch-no { background:hsl(350, 73%, 87%) }
 /* light red */
-.low, .cline-no { background:#FCE1E5 }
+.low, .cline-no { background:hsl(351, 82%, 94%) }
 /* light green */
-.high, .cline-yes { background:rgb(230,245,208) }
+.high, .cline-yes { background:#e6f5d0 }
 /* medium green */
-.cstat-yes { background:rgb(161,215,106) }
+.cstat-yes { background:#a1d76a }
 /* dark green */
-.status-line.high, .high .cover-fill { background:rgb(77,146,33) }
-.high .chart { border:1px solid rgb(77,146,33) }
+.status-line.high, .high .cover-fill { background:#4d9221 }
+.high .chart { border:1px solid #4d9221 }
 /* dark yellow (gold) */
 .status-line.medium, .medium .cover-fill { background: #f9cd0b; }
 .medium .chart { border:1px solid #f9cd0b; }
