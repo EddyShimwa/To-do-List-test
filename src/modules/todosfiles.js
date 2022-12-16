@@ -1,11 +1,10 @@
-const btnSubmit = document.querySelector(".btn-submit");
-const todoItemsDes = document.querySelectorAll(".todo-des");
-const filterButton = document.querySelector(".btn-clear-all");
+import { validateForm } from './utils.js';
+import { showMsg } from './domSelector.js';
 
 export default class Todos {
   constructor() {
-    if (localStorage.getItem("todos")) {
-      this.todos = JSON.parse(localStorage.getItem("todos"));
+    if (localStorage.getItem('todos')) {
+      this.todos = JSON.parse(localStorage.getItem('todos'));
     } else {
       this.todos = [];
     }
@@ -32,60 +31,60 @@ export default class Todos {
     });
 
     this.todos = [...todoArr];
-    localStorage.setItem("todos", JSON.stringify(this.todos));
+    localStorage.setItem('todos', JSON.stringify(this.todos));
   };
 
   // Render todo list
   render = () => {
-    const todoContainer = document.querySelector(".todo-items-gropu");
-    const showMsg = document.querySelector(".display-message");
+    const todoContainer = document.querySelector('.todo-items-gropu');
+    const showMsg = document.querySelector('.display-message');
 
-    todoContainer.innerHTML = "";
-    showMsg.innerText = "";
-    showMsg.classList.remove("form-error");
+    todoContainer.innerHTML = '';
+    showMsg.innerText = '';
+    showMsg.classList.remove('form-error');
     this.sortAndSave();
     if (this.todos.length > 0) {
       this.todos.forEach((todo) => {
         // create todo item
-        const todoItem = document.createElement("li");
+        const todoItem = document.createElement('li');
         todoItem.id = todo.index;
-        todoItem.className = "todo-item";
-        todoItem.setAttribute("draggable", true);
+        todoItem.className = 'todo-item';
+        todoItem.setAttribute('draggable', true);
 
         // drag and drop function;
-        todoItem.addEventListener("dragstart", () => {
-          todoItem.classList.add("dragging");
+        todoItem.addEventListener('dragstart', () => {
+          todoItem.classList.add('dragging');
         });
 
-        todoItem.addEventListener("dragend", () => {
-          todoItem.classList.remove("dragging");
+        todoItem.addEventListener('dragend', () => {
+          todoItem.classList.remove('dragging');
         });
 
         // todo checkbox
-        const checkbox = document.createElement("input");
-        checkbox.setAttribute("type", "checkbox");
-        checkbox.id = "todo-compleate";
+        const checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.id = 'todo-compleate';
 
-        checkbox.addEventListener("change", (e) => {
+        checkbox.addEventListener('change', (e) => {
           this.onCompleate(e);
         });
 
         // todo description
-        const todoDes = document.createElement("p");
-        todoDes.className = "todo-des";
+        const todoDes = document.createElement('p');
+        todoDes.className = 'todo-des';
         todoDes.innerText = todo.description;
 
         if (todo.completed) {
-          checkbox.setAttribute("checked", "yes");
-          todoDes.classList.add("todo-compleated");
+          checkbox.setAttribute('checked', 'yes');
+          todoDes.classList.add('todo-compleated');
         }
 
         // todo Three dot button
-        const threeDotButton = document.createElement("button");
-        threeDotButton.className = "btn-three-dot";
+        const threeDotButton = document.createElement('button');
+        threeDotButton.className = 'btn-three-dot';
 
         // add event on three icon for edit and delete.
-        threeDotButton.addEventListener("click", (e) => {
+        threeDotButton.addEventListener('click', (e) => {
           this.onClickTodoDes(e);
         });
 
@@ -96,15 +95,14 @@ export default class Todos {
         todoContainer.appendChild(todoItem);
       });
     } else {
-      todoContainer.innerHTML =
-        '<p class="no-item">Your to do list is empty! Please add some!.</p>';
+      todoContainer.innerHTML = '<p class="no-item">Your to do list is empty! Please add some!.</p>';
     }
   };
 
   // onSubmit method
   onSubmit = () => {
     // Validate the form
-    const formInput = document.getElementById("description");
+    const formInput = document.getElementById('description');
     const description = formInput.value;
     const required = true;
     const minLength = 3;
@@ -115,22 +113,22 @@ export default class Todos {
       required,
       minLength,
       maxLength,
-      specialChar
+      specialChar,
     );
 
     // Check if form has error or not
-    const showMsg = document.querySelector(".display-message");
+    const showMsg = document.querySelector('.display-message');
 
     if (isValid.isError === true && isValid.msg.length >= 0) {
-      showMsg.classList.add("form-error");
+      showMsg.classList.add('form-error');
       showMsg.textContent = isValid.msg;
-      formInput.classList.add("invalid");
+      formInput.classList.add('invalid');
     } else {
       // if form is empty add a new todo
-      showMsg.classList.remove("form-error");
-      showMsg.textContent = "";
-      formInput.classList.remove("invalid");
-      formInput.value = "";
+      showMsg.classList.remove('form-error');
+      showMsg.textContent = '';
+      formInput.classList.remove('invalid');
+      formInput.value = '';
       const index = this.todos.length + 1 || 1;
       const todo = {
         description,
@@ -162,15 +160,15 @@ export default class Todos {
       required,
       minLength,
       maxLength,
-      specialChar
+      specialChar,
     );
 
     if (isValid.isError === true && isValid.msg.length > 0) {
-      showMsg.classList.add("form-error");
+      showMsg.classList.add('form-error');
       showMsg.textContent = isValid.msg;
-      e.target.classList.add("invalid-edit");
+      e.target.classList.add('invalid-edit');
     } else {
-      e.target.classList.remove("invalid-edit");
+      e.target.classList.remove('invalid-edit');
       const index = e.target.parentElement.id;
       const newArr = [...this.todos];
       const indx = newArr.findIndex((item) => index === item.index.toString());
@@ -186,43 +184,42 @@ export default class Todos {
   onClickTodoDes = (e) => {
     // target.outerHTML = document.createElement('textarea');
     const parent = e.target.parentElement.parentElement;
-    const getTotodes = parent.querySelector(".todo-des").innerText;
-    parent.innerHTML = "";
+    const getTotodes = parent.querySelector('.todo-des').innerText;
+    parent.innerHTML = '';
 
     // todo checkbox
-    const checkbox = document.createElement("input");
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.id = "todo-compleate";
+    const checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.id = 'todo-compleate';
 
-    checkbox.addEventListener("change", (e) => {
+    checkbox.addEventListener('change', (e) => {
       this.onCompleate(e);
     });
 
     // todo description
-    const todoEditInput = document.createElement("input");
-    todoEditInput.setAttribute("type", "text");
-    todoEditInput.setAttribute("value", getTotodes);
-    todoEditInput.className = "todo-edit-input";
+    const todoEditInput = document.createElement('input');
+    todoEditInput.setAttribute('type', 'text');
+    todoEditInput.setAttribute('value', getTotodes);
+    todoEditInput.className = 'todo-edit-input';
 
     // Add event on keypress in the textarea
-    todoEditInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
+    todoEditInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
         e.preventDefault();
         this.edit(e);
       } else {
-        showMsg.classList.remove("form-error");
-        showMsg.innerText = "";
-        e.target.classList.remove("invalid-edit");
+        showMsg.classList.remove('form-error');
+        showMsg.innerText = '';
+        e.target.classList.remove('invalid-edit');
       }
     });
 
     // todo Delete dot button
-    const deleteTodo = document.createElement("button");
-    deleteTodo.className = "btn-delete";
-    deleteTodo.innerHTML = `<img src="${deleteIcon}" alt="X">`;
+    const deleteTodo = document.createElement('button');
+    deleteTodo.className = 'btn-delete';
 
     // adding event on delete icon
-    deleteTodo.addEventListener("click", () => {
+    deleteTodo.addEventListener('click', () => {
       const index = parent.id;
       this.delete(index);
     });
@@ -291,6 +288,4 @@ export default class Todos {
     }
     return { isError, msg };
   };
-
-
 }
