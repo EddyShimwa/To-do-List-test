@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import { validateForm } from './utils.js';
 import { todoContainer, formInput, showMsg } from './domSelector.js';
 
@@ -194,18 +196,18 @@ export default class Todos {
         e.preventDefault();
         this.edit(e);
       } else {
-        showMsg.classList.remove('form-error');test('validate form and update todos correctly', () => {
+        showMsg.classList.remove('form-error'); test('validate form and update todos correctly', () => {
           const e = {
             target: {
               value: 'write jest test',
               classList: {
                 add: jest.fn(),
-                remove: jest.fn()
+                remove: jest.fn(),
               },
               parentElement: {
-                id: '1'
-              }
-            }
+                id: '1',
+              },
+            },
           };
           const required = true;
           const minLength = 3;
@@ -216,23 +218,23 @@ export default class Todos {
           // mock implementation of validateForm to return no errors
           validateForm.mockImplementation(() => ({
             isError: false,
-            msg: ''
+            msg: '',
           }));
 
           // initialize todos array and call edit function
-          this.todos = [{    index: 1,    description: 'old todo'  }];
+          this.todos = [{ index: 1, description: 'old todo' }];
           edit(e);
 
           // verify that todos array has been updated
           expect(this.todos).toEqual([{
             index: 1,
-            description: 'write jest test'
+            description: 'write jest test',
           }]);
 
           // mock implementation of validateForm to return errors
           validateForm.mockImplementation(() => ({
             isError: true,
-            msg: 'error message'
+            msg: 'error message',
           }));
 
           // call edit function again

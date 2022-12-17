@@ -337,10 +337,7 @@
 <a name='L272'></a><a href='#L272'>272</a>
 <a name='L273'></a><a href='#L273'>273</a>
 <a name='L274'></a><a href='#L274'>274</a>
-<a name='L275'></a><a href='#L275'>275</a>
-<a name='L276'></a><a href='#L276'>276</a>
-<a name='L277'></a><a href='#L277'>277</a>
-<a name='L278'></a><a href='#L278'>278</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L275'></a><a href='#L275'>275</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -439,7 +436,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -615,16 +611,14 @@
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const btnSubmit = document.querySelector(".btn-submit");
-const todoItemsDes = document.querySelectorAll(".todo-des");
-const filterButton = document.querySelector(".btn-clear-all");
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const btnSubmit = document.querySelector('.btn-submit');
+const todoItemsDes = document.querySelectorAll('.todo-des');
+const filterButton = document.querySelector('.btn-clear-all');
 &nbsp;
 export default class Todos {
   constructor() {
-    if (localStorage.getItem("todos")) {
-      this.todos = JSON.parse(localStorage.getItem("todos"));
+    if (localStorage.getItem('todos')) {
+      this.todos = JSON.parse(localStorage.getItem('todos'));
     } else {
       this.todos = [];
     }
@@ -651,60 +645,60 @@ export default class Todos {
     });
 &nbsp;
     this.todos = [...todoArr];
-    localStorage.setItem("todos", JSON.stringify(this.todos));
+    localStorage.setItem('todos', JSON.stringify(this.todos));
   };
 &nbsp;
   // Render todo list
   render = () =&gt; {
-    const todoContainer = document.querySelector(".todo-items-gropu");
-    const showMsg = document.querySelector(".display-message");
+    const todoContainer = document.querySelector('.todo-items-gropu');
+    const showMsg = document.querySelector('.display-message');
 &nbsp;
-    todoContainer.innerHTML = "";
-    showMsg.innerText = "";
-    showMsg.classList.remove("form-error");
+    todoContainer.innerHTML = '';
+    showMsg.innerText = '';
+    showMsg.classList.remove('form-error');
     this.sortAndSave();
     if (this.todos.length &gt; 0) {
       this.todos.forEach((todo) =&gt; {
         // create todo item
-        const todoItem = document.createElement("li");
+        const todoItem = document.createElement('li');
         todoItem.id = todo.index;
-        todoItem.className = "todo-item";
-        todoItem.setAttribute("draggable", true);
+        todoItem.className = 'todo-item';
+        todoItem.setAttribute('draggable', true);
 &nbsp;
         // drag and drop function;
-        todoItem.addEventListener("dragstart", <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >          todoItem.classList.add("dragging");</span>
+        todoItem.addEventListener('dragstart', <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >          todoItem.classList.add('dragging');</span>
         });
 &nbsp;
-        todoItem.addEventListener("dragend", <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >          todoItem.classList.remove("dragging");</span>
+        todoItem.addEventListener('dragend', <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >          todoItem.classList.remove('dragging');</span>
         });
 &nbsp;
         // todo checkbox
-        const checkbox = document.createElement("input");
-        checkbox.setAttribute("type", "checkbox");
-        checkbox.id = "todo-compleate";
+        const checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.id = 'todo-compleate';
 &nbsp;
-        checkbox.addEventListener("change", <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
+        checkbox.addEventListener('change', <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
 <span class="cstat-no" title="statement not covered" >          this.onCompleate(e);</span>
         });
 &nbsp;
         // todo description
-        const todoDes = document.createElement("p");
-        todoDes.className = "todo-des";
+        const todoDes = document.createElement('p');
+        todoDes.className = 'todo-des';
         todoDes.innerText = todo.description;
 &nbsp;
         if (todo.completed) {
-          checkbox.setAttribute("checked", "yes");
-          todoDes.classList.add("todo-compleated");
+          checkbox.setAttribute('checked', 'yes');
+          todoDes.classList.add('todo-compleated');
         }
 &nbsp;
         // todo Three dot button
-        const threeDotButton = document.createElement("button");
-        threeDotButton.className = "btn-three-dot";
+        const threeDotButton = document.createElement('button');
+        threeDotButton.className = 'btn-three-dot';
 &nbsp;
         // add event on three icon for edit and delete.
-        threeDotButton.addEventListener("click", <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
+        threeDotButton.addEventListener('click', <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
 <span class="cstat-no" title="statement not covered" >          this.onClickTodoDes(e);</span>
         });
 &nbsp;
@@ -715,15 +709,14 @@ export default class Todos {
         todoContainer.appendChild(todoItem);
       });
     } else {
-      todoContainer.innerHTML =
-        '&lt;p class="no-item"&gt;Your to do list is empty! Please add some!.&lt;/p&gt;';
+      todoContainer.innerHTML = '&lt;p class="no-item"&gt;Your to do list is empty! Please add some!.&lt;/p&gt;';
     }
   };
 &nbsp;
   // onSubmit method
   onSubmit = () =&gt; {
     // Validate the form
-    const formInput = document.getElementById("description");
+    const formInput = document.getElementById('description');
     const description = formInput.value;
     const required = true;
     const minLength = 3;
@@ -734,22 +727,22 @@ export default class Todos {
       required,
       minLength,
       maxLength,
-      specialChar
+      specialChar,
     );
 &nbsp;
     // Check if form has error or not
-    const showMsg = document.querySelector(".display-message");
+    const showMsg = document.querySelector('.display-message');
 &nbsp;
     <span class="missing-if-branch" title="if path not taken" >I</span>if (isValid.isError === true &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >isValid.msg.length &gt;= 0)</span> {
-<span class="cstat-no" title="statement not covered" >      showMsg.classList.add("form-error");</span>
+<span class="cstat-no" title="statement not covered" >      showMsg.classList.add('form-error');</span>
 <span class="cstat-no" title="statement not covered" >      showMsg.textContent = isValid.msg;</span>
-<span class="cstat-no" title="statement not covered" >      formInput.classList.add("invalid");</span>
+<span class="cstat-no" title="statement not covered" >      formInput.classList.add('invalid');</span>
     } else {
       // if form is empty add a new todo
-      showMsg.classList.remove("form-error");
-      showMsg.textContent = "";
-      formInput.classList.remove("invalid");
-      formInput.value = "";
+      showMsg.classList.remove('form-error');
+      showMsg.textContent = '';
+      formInput.classList.remove('invalid');
+      formInput.value = '';
       const index = this.todos.length + 1 || <span class="branch-1 cbranch-no" title="branch not covered" >1;</span>
       const todo = {
         description,
@@ -769,60 +762,60 @@ export default class Todos {
 &nbsp;
   // edit todo
   edit = (e) =&gt; {
-    const value  = e.value;
+    const { value } = e;
 &nbsp;
-      e.classList.remove("invalid-edit");
-      const index = e.parentElement.id;
-      const newArr = [...this.todos];
-      const indx = newArr.findIndex((item) =&gt; index === item.index.toString());
-      <span class="missing-if-branch" title="else path not taken" >E</span>if (indx &gt;= 0) {
-        newArr[indx].description = value;
-      }
-      this.todos = [...newArr];
-      this.render();
+    e.classList.remove('invalid-edit');
+    const index = e.parentElement.id;
+    const newArr = [...this.todos];
+    const indx = newArr.findIndex((item) =&gt; index === item.index.toString());
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (indx &gt;= 0) {
+      newArr[indx].description = value;
+    }
+    this.todos = [...newArr];
+    this.render();
   };
 &nbsp;
   // onClickDes enent method
   onClickTodoDes = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
     // target.outerHTML = document.createElement('textarea');
     const parent = <span class="cstat-no" title="statement not covered" >e.target.parentElement.parentElement;</span>
-    const getTotodes = <span class="cstat-no" title="statement not covered" >parent.querySelector(".todo-des").innerText;</span>
-<span class="cstat-no" title="statement not covered" >    parent.innerHTML = "";</span>
+    const getTotodes = <span class="cstat-no" title="statement not covered" >parent.querySelector('.todo-des').innerText;</span>
+<span class="cstat-no" title="statement not covered" >    parent.innerHTML = '';</span>
 &nbsp;
     // todo checkbox
-    const checkbox = <span class="cstat-no" title="statement not covered" >document.createElement("input");</span>
-<span class="cstat-no" title="statement not covered" >    checkbox.setAttribute("type", "checkbox");</span>
-<span class="cstat-no" title="statement not covered" >    checkbox.id = "todo-compleate";</span>
+    const checkbox = <span class="cstat-no" title="statement not covered" >document.createElement('input');</span>
+<span class="cstat-no" title="statement not covered" >    checkbox.setAttribute('type', 'checkbox');</span>
+<span class="cstat-no" title="statement not covered" >    checkbox.id = 'todo-compleate';</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    checkbox.addEventListener("change", <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    checkbox.addEventListener('change', <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      this.onCompleate(e);</span>
     });
 &nbsp;
     // todo description
-    const todoEditInput = <span class="cstat-no" title="statement not covered" >document.createElement("input");</span>
-<span class="cstat-no" title="statement not covered" >    todoEditInput.setAttribute("type", "text");</span>
-<span class="cstat-no" title="statement not covered" >    todoEditInput.setAttribute("value", getTotodes);</span>
-<span class="cstat-no" title="statement not covered" >    todoEditInput.className = "todo-edit-input";</span>
+    const todoEditInput = <span class="cstat-no" title="statement not covered" >document.createElement('input');</span>
+<span class="cstat-no" title="statement not covered" >    todoEditInput.setAttribute('type', 'text');</span>
+<span class="cstat-no" title="statement not covered" >    todoEditInput.setAttribute('value', getTotodes);</span>
+<span class="cstat-no" title="statement not covered" >    todoEditInput.className = 'todo-edit-input';</span>
 &nbsp;
     // Add event on keypress in the textarea
-<span class="cstat-no" title="statement not covered" >    todoEditInput.addEventListener("keypress", <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (e.key === "Enter") {</span>
+<span class="cstat-no" title="statement not covered" >    todoEditInput.addEventListener('keypress', <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (e.key === 'Enter') {</span>
 <span class="cstat-no" title="statement not covered" >        e.preventDefault();</span>
 <span class="cstat-no" title="statement not covered" >        this.edit(e);</span>
       } else {
-<span class="cstat-no" title="statement not covered" >        showMsg.classList.remove("form-error");</span>
-<span class="cstat-no" title="statement not covered" >        showMsg.innerText = "";</span>
-<span class="cstat-no" title="statement not covered" >        e.target.classList.remove("invalid-edit");</span>
+<span class="cstat-no" title="statement not covered" >        showMsg.classList.remove('form-error');</span>
+<span class="cstat-no" title="statement not covered" >        showMsg.innerText = '';</span>
+<span class="cstat-no" title="statement not covered" >        e.target.classList.remove('invalid-edit');</span>
       }
     });
 &nbsp;
     // todo Delete dot button
-    const deleteTodo = <span class="cstat-no" title="statement not covered" >document.createElement("button");</span>
-<span class="cstat-no" title="statement not covered" >    deleteTodo.className = "btn-delete";</span>
+    const deleteTodo = <span class="cstat-no" title="statement not covered" >document.createElement('button');</span>
+<span class="cstat-no" title="statement not covered" >    deleteTodo.className = 'btn-delete';</span>
 <span class="cstat-no" title="statement not covered" >    deleteTodo.innerHTML = `&lt;img src="${deleteIcon}" alt="X"&gt;`;</span>
 &nbsp;
     // adding event on delete icon
-<span class="cstat-no" title="statement not covered" >    deleteTodo.addEventListener("click", <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    deleteTodo.addEventListener('click', <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
       const index = <span class="cstat-no" title="statement not covered" >parent.id;</span>
 <span class="cstat-no" title="statement not covered" >      this.delete(index);</span>
     });
@@ -891,8 +884,6 @@ export default class Todos {
     }
     return { isError, msg };
   };
-&nbsp;
-&nbsp;
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -901,7 +892,7 @@ export default class Todos {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-17T10:43:27.612Z
+                at 2022-12-17T06:36:34.490Z
             </div>
         <script src="prettify.js"></script>
         <script>

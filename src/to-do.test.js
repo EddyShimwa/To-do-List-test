@@ -1,6 +1,8 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable indent */
 
+import Todos from './modules/customTodosFiles.js';
+
 document.body.innerHTML = `<body>
 <main class="container">
   <section class="todo-section">
@@ -16,28 +18,26 @@ document.body.innerHTML = `<body>
   </section>
 </main>
 </body>`;
-
-import Todos from "./modules/customTodosFiles.js";
 // import isValid from "./modules/todos"
 
-const domInput = document.getElementById("description");
+const domInput = document.getElementById('description');
 // Test Add one task
-describe("Add Task Test ", () => {
+describe('Add Task Test ', () => {
   const list = new Todos();
-  test("Add normal task", () => {
-    domInput.value = "task 1";
+  test('Add normal task', () => {
+    domInput.value = 'task 1';
     list.onSubmit();
     expect(list.todos).toHaveLength(1);
   });
 
-  test("Add second task", () => {
-    domInput.value = "task 2";
+  test('Add second task', () => {
+    domInput.value = 'task 2';
     list.onSubmit();
     expect(list.todos).toHaveLength(2);
   });
 
-  test("Add third task", () => {
-    domInput.value = "task 3";
+  test('Add third task', () => {
+    domInput.value = 'task 3';
     list.onSubmit();
     expect(list.todos).toHaveLength(3);
   });
@@ -64,71 +64,93 @@ describe('Delete a todo task ', () => {
   });
 });
 
-
 // Test edit one task
-describe("edit the input content", () => {
-  test("should edit one task", () => {
+describe('edit the input content', () => {
+  test('should edit one task', () => {
     const list = new Todos();
-    list.todos = []
-    domInput.value = "task 1";
+    list.todos = [];
+    domInput.value = 'task 1';
     list.onSubmit();
-    domInput.value = "task 2";
+    domInput.value = 'task 2';
     list.onSubmit();
 
     const domTask = document.getElementById('1');
-    const editInput = domTask.querySelector('input')
-    editInput.value = "edited task 1";
+    const editInput = domTask.querySelector('input');
+    editInput.value = 'edited task 1';
     list.edit(editInput);
-    expect(list.todos[0].description).toBe('edited task 1')
+    expect(list.todos[0].description).toBe('edited task 1');
   });
 
-  test("should edit one task", () => {
+  test('should edit one task', () => {
     const list = new Todos();
-    list.todos = []
-    domInput.value = "task 1";
+    list.todos = [];
+    domInput.value = 'task 1';
     list.onSubmit();
-    domInput.value = "task 2";
+    domInput.value = 'task 2';
     list.onSubmit();
 
     const domTask = document.getElementById('2');
-    const editInput = domTask.querySelector('input')
-    editInput.value = "edited task 2";
+    const editInput = domTask.querySelector('input');
+    editInput.value = 'edited task 2';
     list.edit(editInput);
-    expect(list.todos[1].description).toBe('edited task 2')
+    expect(list.todos[1].description).toBe('edited task 2');
   });
 });
-
 
 // Test update one completed task
 describe('Update completed task', () => {
   test('should completed one task', () => {
     const list = new Todos();
-    list.todos = []
-    domInput.value = "task 1";
+    list.todos = [];
+    domInput.value = 'task 1';
     list.onSubmit();
-    domInput.value = "task 2";
+    domInput.value = 'task 2';
     list.onSubmit();
     const domTask = document.getElementById('1');
     const id = domTask.querySelector('input[type="checkbox"]');
     id.checked = true;
-    list.onCompleate(id)
+    list.onCompleate(id);
     expect(list.todos[0].completed).toBe(true);
   });
 
   test('should completed one task', () => {
     const list = new Todos();
-    list.todos = []
-    domInput.value = "task 1";
+    list.todos = [];
+    domInput.value = 'task 1';
     list.onSubmit();
-    domInput.value = "task 2";
+    domInput.value = 'task 2';
     list.onSubmit();
     const domTask = document.getElementById('2');
     const id = domTask.querySelector('input[type="checkbox"]');
     id.checked = true;
-    list.onCompleate(id)
+    list.onCompleate(id);
     expect(list.todos[1].completed).toBe(true);
-  })
-})
+  });
+});
 
+// Test for clear all completed task
+describe('Clear All completed tasks', () => {
+  test('should clear all the task form the todo list', () => {
+    const list = new Todos();
+    list.todos = [];
+    domInput.value = 'task 1';
+    list.onSubmit();
+    domInput.value = 'task 2';
+    list.onSubmit();
+    list.todos[1].completed = true;
+    list.onFilterCompletedTodos();
+    expect(list.todos).toHaveLength(1);
+  });
 
-
+  test('should clear all the task form the todo list', () => {
+    const list = new Todos();
+    list.todos = [];
+    domInput.value = 'task 1';
+    list.onSubmit();
+    domInput.value = 'task 2';
+    list.onSubmit();
+    list.todos[0].completed = true;
+    list.onFilterCompletedTodos();
+    expect(list.todos[0].index).toBe(1);
+  });
+});
