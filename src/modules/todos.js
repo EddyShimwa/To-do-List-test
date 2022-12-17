@@ -194,7 +194,56 @@ export default class Todos {
         e.preventDefault();
         this.edit(e);
       } else {
-        showMsg.classList.remove('form-error');
+        showMsg.classList.remove('form-error');test('validate form and update todos correctly', () => {
+          const e = {
+            target: {
+              value: 'write jest test',
+              classList: {
+                add: jest.fn(),
+                remove: jest.fn()
+              },
+              parentElement: {
+                id: '1'
+              }
+            }
+          };
+          const required = true;
+          const minLength = 3;
+          const maxLength = 255;
+          const specialChar = false;
+          const isValid = validateForm(e.target.value, required, minLength, maxLength, specialChar);
+
+          // mock implementation of validateForm to return no errors
+          validateForm.mockImplementation(() => ({
+            isError: false,
+            msg: ''
+          }));
+
+          // initialize todos array and call edit function
+          this.todos = [{    index: 1,    description: 'old todo'  }];
+          edit(e);
+
+          // verify that todos array has been updated
+          expect(this.todos).toEqual([{
+            index: 1,
+            description: 'write jest test'
+          }]);
+
+          // mock implementation of validateForm to return errors
+          validateForm.mockImplementation(() => ({
+            isError: true,
+            msg: 'error message'
+          }));
+
+          // call edit function again
+          edit(e);
+
+          // verify that showMsg element received the correct error message
+          expect(showMsg.textContent).toBe('error message');
+          // verify that e.target received the 'invalid-edit' class
+          expect(e.target.classList.add).toHaveBeenCalledWith('invalid-edit');
+        });
+
         showMsg.innerText = '';
         e.target.classList.remove('invalid-edit');
       }

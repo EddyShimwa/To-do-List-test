@@ -18,28 +18,48 @@ document.body.innerHTML = `<body>
 </body>`;
 
 import Todos from "./modules/todosfiles.js";
+// import isValid from "./modules/todos"
 
-const domInput = document.getElementById('description');
+const domInput = document.getElementById("description");
 
-describe("Add Task Test ", () => {
-  const list = new Todos();
-  test("Add normal task", () => {
-    domInput.value = 'task 1';
+// describe("Add Task Test ", () => {
+//   const list = new Todos();
+//   test("Add normal task", () => {
+//     domInput.value = "task 1";
+//     list.onSubmit();
+//     expect(list.todos).toHaveLength(1);
+//   });
+
+//   test("Add second task", () => {
+//     domInput.value = "task 2";
+//     list.onSubmit();
+//     expect(list.todos).toHaveLength(2);
+//   });
+
+//   test("Add third task", () => {
+//     domInput.value = "task 3";
+//     list.onSubmit();
+//     expect(list.todos).toHaveLength(3);
+//   });
+// });
+
+
+
+// describe("edit the input content", () => {
+//   const list = new Todos();
+//   test("ediit the onput", () => {
+//     const event = { target:{value: 'task', parentElement: {id}} };
+//   });
+// });
+
+
+describe('Clear All completed tasks', () => {
+  test('should clear all the task form the todo list', () => {
+    const list = new Todos();
     list.onSubmit();
-    expect(list.todos).toHaveLength(1);
+    list.todos[0].completed = true;
+    list.onCompleate();
+    expect(list.todos).toHaveLength(0);
   });
 
-  test("Add second task", () => {
-    domInput.value = 'task 2';
-    list.onSubmit();
-    expect(list.todos).toHaveLength(2);
-  });
-
-  test("Add second task", () => {
-    domInput.value = 'task 3';
-    list.onSubmit();
-    expect(list.todos).toHaveLength(3);
-  });
 });
-
-
